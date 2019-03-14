@@ -1,0 +1,44 @@
+from selenium import webdriver
+import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+#注册
+def zhuche():
+    driver = webdriver.Firefox()
+    driver.get("https://www.baidu.com/")
+    search_windows = driver.current_window_handle
+    time.sleep(3)
+    driver.find_element_by_link_text("登录").click()
+    time.sleep(3)
+    driver.find_element_by_link_text("立即注册").click()
+    time.sleep(3)
+    all_handles = driver.window_handles
+    for handle in all_handles:
+        if handle != search_windows:
+            driver.switch_to_window(handle)
+            driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__isAgree"]').click()
+            time.sleep(3)
+            driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__userName"]').send_keys("zjb2152132")
+            time.sleep(3)
+            driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__phone"]').send_keys("15221726315")
+            time.sleep(3)
+            driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_3__password"]').send_keys("swja2152132")
+
+#登录百度
+def login():
+    driver = webdriver.Firefox()
+    driver.get("https://www.baidu.com/")
+    search_windows = driver.current_window_handle
+    driver.find_element_by_link_text('登录').click()
+    WebDriverWait(driver, 30, 1).until(EC.presence_of_element_located((By.LINK_TEXT,"立即注册")))
+    driver.find_element_by_class_name("tang-pass-footerBar").find_element_by_css_selector(
+        "#TANGRAM__PSP_10__footerULoginBtn").click()
+    driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_10__userName"]').send_keys("15221726315")
+    driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_10__password"]').send_keys("swja2152132")
+    driver.find_element_by_xpath('//*[@id="TANGRAM__PSP_10__submit"]').click()
+login()
+# def openDriver():
+#     driver.get("http://p.to")
+#     driver.maximize_window()
+# openDriver()
