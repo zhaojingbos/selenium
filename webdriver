@@ -1,0 +1,54 @@
+selenium：
+driver = webdriver.Chrome()
+driver.set_window_size(width,height)#控制浏览器打开的大小
+driver.back()#后退一页
+driver.forward()#前进一页
+driver.refresh()#刷新当前页面
+ActionBuilder(driver).context_click(元素).perform()#对定位到的元素右击操作
+ActionBuilder(driver).move_to_element(元素).perform()#对定位到的元素执行悬停操作
+ActionBuilder(driver).double_click(元素).perform()#对定位到的元素执行双击操作
+ActionBuilder(driver).drag_and_drop(source,target).perform()#将source元素，移动到target元素的位置
+简单元素操作：
+1、clear():清除文本内容
+2、send_key():模拟输入内容
+3、click():单击元素
+4、size：返回元素的尺寸
+5、text：获取元素的问题
+6、get_attribute(name):获取元素的属性值
+7、is_displayed():设置该元素是否可见
+
+鼠标点击事件：
+1、perform():执行所有ActionChains中存储的行为（可以理解成对整个操作的提交按钮）
+2、context_click():右击
+3、double_click():双击
+4、drag_and_drop(）:拖动
+5、move_to_element():鼠标悬停
+
+键盘事件：
+send_keys(Keys.BACK_SPACE) 删除键
+send_keys(Keys.SPACE)      空格键
+send_keys(Keys.TAB)        制表键
+send_keys(Keys.ESCAPE)     回退键
+send_keys(Keys.ENTER)      回车键
+send_keys(Keys.CONREOL,'a')全选
+send_keys(Keys.CONREOL,'c')复制 
+send_keys(Keys.CONREOL,'x')剪切
+send_keys(Keys.CONREOL,'v')粘贴
+send_keys(Keys.F1)         键盘F1
+
+一组元素选择：
+例子：
+driver.find_elements_by_css_selector('input[type=checkbox]')  选择全部标签是input 属性是checkbook的
+driver.find_elements_by_css_selector('input[type=checkbox]').pop().click   点击最后一个复选框 
+driver.find_elements_by_css_selector('input[type=checkbox]').pop(1).click   点击第一个复选框 
+driver.find_elements_by_css_selector('input[type=checkbox]').pop(2).click   点击第二个复选框 
+
+
+多表单切换：
+webdriver只能对一个页面的元素定位，无法直接定位到表单内嵌页面的元素
+可以通过swich_to.frame()切换到对应的表单，在定位到对应元素进行操作
+
+多窗口切换：
+driver_current_window_handle  获得当前窗口的句柄
+driver.window_handles  获取全部窗口的句柄
+switch_to.window(句柄) 通过句柄切换到对应的窗口
