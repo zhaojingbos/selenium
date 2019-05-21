@@ -52,3 +52,44 @@ webdriver只能对一个页面的元素定位，无法直接定位到表单内�
 driver_current_window_handle  获得当前窗口的句柄
 driver.window_handles  获取全部窗口的句柄
 switch_to.window(句柄) 通过句柄切换到对应的窗口
+
+上传文件：
+send_key("路径") 
+Autolt实现上传
+
+下载文件：
+fp = webdriver.FirefoxProfile()
+fp.set_preference("browser.download.folderList",2) #0代表默认下载路径，2可以保存到指定目录
+fp.set_preference("browser.download.manager.showWhenStarting",True) #True 显示开始下载，False不显示开始下载
+fp.set_preference("browser.download.dir",os.getcwd()) #os.getcwd()不需要传递参数，用于放回当前的目录
+fp.set_preference("browser.helperApps.neverAsk.saveToDisk","application/octet-stream")  #application/octet-stream为文件的类型
+
+操作cookie：
+get_cookies()      获取所有的cookies信息    
+get_cookie(name)   获取key=name的cookie信息
+add_cookie(cookie_dict)  添加cookie，对象必须是字典格式
+delete_cookie(name,optionsString)  删除key = name 的cookie信息
+delete_all_cookies()  删除全部cookies 信息
+
+调用JavaScript：
+js = window.scrollTop(坐边距，上边距)；window.scrollTop用来调用滚动条
+driver.execute_script(js) 执行
+富文本框，需要通过Javascript代码输入
+例如：
+text= "input text" 需要输入到富文本框的内容
+js = "var sum = document.getElementById('id');sum.value = '"+text+"';" javascript代码通过+号连接text
+driver.execute_script(js)
+
+处理HTML5的视频播放
+driver.executr_script("return arguments[0].currentSrc",元素)  返回播放文件地址
+driver.executr_script("return arguments[0].play()",元素)      播放视频
+driver.executr_script("return arguments[0].pause()","元素")          暂停视频
+from time import sleep
+sleep(time)  播放时长
+
+窗口截图：
+driver.get_screenshot_as_file("路径") 截取当前窗口，并指定路径保存
+
+关闭窗口
+driver.quie() 关闭全部窗口
+driver.close()关闭当前窗口
