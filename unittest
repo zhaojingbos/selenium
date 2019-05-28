@@ -1,1 +1,31 @@
+unittest 主要分为 Test Case,Test Suite,Test Runner,Test Fixture 4块
 
+Test case 分为setUp,run,tearDown 三块，分别对应开始,操作内容,结束
+
+Test Suite 用于构建测试集合 
+例如：
+suite = unittest.TestSuite()
+suite.addTest()
+
+Test Running 用于执行测试集合 
+例如：
+runner = unittest.TextTestRunner()
+runner.run()
+
+Test Fuxture 初始化测试环境
+
+unittest 断言方法
+assertEqual(a, b)	          判断ab是否相等
+assertNotEqual(a, b)	      判断ab不相等
+assertIs(a, b)　	           判断a是b
+assertIsNot(a, b)	          判断a不是b
+assertIsNone(a)	            判断a是不是None
+assertIsNotNone(a)	        判断a不是None
+assertIn(a,b)	              判断a在b中，此时a与b可以相等
+assertNotIn(a, b)	          判断a不在b中
+assertIsInstance(a, b)	    判断a是否属于b的实例
+assertNotIsInstance(a, b)	  判断a不属于b的实例 
+assertGreater(a, b)	        判断a > b
+assertGreaterEqual(a, b)	  判断a >= b 
+assertLess(a, b)	          判断a < b 
+assertLessEqual(a, b)	      判断a <= b 
