@@ -29,6 +29,9 @@ assertGreater(a, b)	        判断a > b
 assertGreaterEqual(a, b)	  判断a >= b 
 assertLess(a, b)	          判断a < b 
 assertLessEqual(a, b)	      判断a <= b 
+例如：
+def test_case(self):
+    self.assertEqual()
 
 discover 同时执行多个测试用例
 discover = unittest.defaultTestLoader.discover("路径",pattern = "test*.py")   *表示任意字符
@@ -38,3 +41,10 @@ runner.run(discover)
 如何执行多级目录的用例: 在每个子目录下放一个__init__.py文件
 
 跳过测试和预期失败：
+unittest.skip(reason) 无条件跳过装饰测试,并说明跳过原因
+unittest.skipIf(condition,reason) 当条件condition为真时,跳过装饰测试
+unittest.skipUnless(condition,reason) 当条件condition为假时，跳过装饰测试
+unittest.expectedFailure() 测试标记为失败，无论结果如何，统一标记为失败
+
+fixtures:
+setUpModule/tearDownModule   在整个模块开始和结束的时候执行
