@@ -29,3 +29,12 @@ assertGreater(a, b)	        判断a > b
 assertGreaterEqual(a, b)	  判断a >= b 
 assertLess(a, b)	          判断a < b 
 assertLessEqual(a, b)	      判断a <= b 
+
+discover 同时执行多个测试用例
+discover = unittest.defaultTestLoader.discover("路径",pattern = "test*.py")   *表示任意字符
+runner = unittest.TextTestRunner()
+runner.run(discover)
+
+如何执行多级目录的用例: 在每个子目录下放一个__init__.py文件
+
+跳过测试和预期失败：
